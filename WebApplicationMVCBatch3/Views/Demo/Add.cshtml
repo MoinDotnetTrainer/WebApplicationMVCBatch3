@@ -1,0 +1,45 @@
+﻿@using WebApplicationMVCBatch3.Models
+@model Operations
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h4>Add</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Add">
+                        <div class="mb-3">
+                            <label for="x" class="form-label">X</label>
+                            <input type="number" class="form-control" placeholder="Enter x" asp-for="x">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="y" class="form-label">y </label>
+                            <input type="number" class="form-control" placeholder="Enter y" asp-for="y">
+                        </div>
+
+
+
+
+
+
+                        <input type="submit" value="submit" name="submit" class="btn btn-primary w-100" />
+
+                        <div class="mb-3">
+                            @TempData["res"]
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
