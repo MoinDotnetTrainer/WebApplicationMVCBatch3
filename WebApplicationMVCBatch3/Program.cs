@@ -19,6 +19,8 @@ namespace WebApplicationMVCBatch3
                 options.UseSqlServer(constr));
 
             builder.Services.AddScoped<IUserRespo, UserRepo>();  // inject 
+            builder.Services.AddScoped<IOrderRepo, Ordersrepo>();  // inject 
+
 
             var app = builder.Build();
 

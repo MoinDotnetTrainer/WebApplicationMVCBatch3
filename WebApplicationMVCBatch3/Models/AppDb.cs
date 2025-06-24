@@ -10,5 +10,7 @@ namespace WebApplicationMVCBatch3.Models
         }
 
         public DbSet<Users> Users { get; set; }  // table
+
+        public DbSet<Orders> Orders { get; set; }  // table
     }
 }
