@@ -39,7 +39,7 @@ namespace WebApplicationMVCBatch3
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Logins}/{action=LoginUser}/{id?}");
 
             app.Run();
         }

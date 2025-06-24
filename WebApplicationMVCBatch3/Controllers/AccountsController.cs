@@ -27,7 +27,7 @@ namespace WebApplicationMVCBatch3.Controllers
             {
                 await _db.AddUsers(obj);
                 TempData["res"] = "User Added Successfully";
-                return RedirectToAction("Insert");
+                return RedirectToAction("GetUsersData");
             }
             else
             {
@@ -35,5 +35,50 @@ namespace WebApplicationMVCBatch3.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> GetUsersData()
+        {
+            var res =await _db.GetAllUsers();
+            return View(res);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int Id)
+        {
+            var res =await _db.GetUserByID(Id);
+            return View(res);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Users obj)
+        {
+            var res = _db.UpdateUsers(obj);
+            return RedirectToAction("GetUsersData");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var res =await _db.GetUserByID(Id);
+            return View(res);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int Id)
+        {
+            var res = _db.DeleteUsers(Id);
+            return RedirectToAction("GetUsersData");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int Id)
+        {
+            var res = await _db.GetUserByID(Id);
+            return View(res);
+        }
+
     }
 }
