@@ -14,5 +14,7 @@ namespace WebApplicationMVCBatch3.Models
         public string? Password { get; set; }
         public string? Dept { get; set; }
         public bool Status { get; set; }
+
+        public string? Role { get; set; }
     }
 }

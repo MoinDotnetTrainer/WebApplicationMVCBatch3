@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationMVCBatch3.Models;
 
@@ -10,9 +11,11 @@ using WebApplicationMVCBatch3.Models;
 namespace WebApplicationMVCBatch3.Migrations
 {
     [DbContext(typeof(AppDb))]
-    partial class AppDbModelSnapshot : ModelSnapshot
+    [Migration("20250625100205_adding roles")]
+    partial class addingroles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,28 +23,6 @@ namespace WebApplicationMVCBatch3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Husband", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("HName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("wifeRefID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("wifeRefID");
-
-                    b.ToTable("husbands");
-                });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Orders", b =>
                 {
@@ -94,34 +75,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Tbl_EmpData");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Wife", b =>
-                {
-                    b.Property<int>("RefID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RefID"));
-
-                    b.Property<string>("WName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RefID");
-
-                    b.ToTable("wives");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Husband", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.Wife", "wife")
-                        .WithMany()
-                        .HasForeignKey("wifeRefID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("wife");
                 });
 #pragma warning restore 612, 618
         }

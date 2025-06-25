@@ -52,5 +52,20 @@ namespace WebApplicationMVCBatch3.Controllers
             return View();
         }
 
+
+        public IActionResult CookieEx()
+        {
+
+            CookieOptions obj = new CookieOptions();
+            obj.Expires = DateTime.Now.AddDays(7); // 1 day
+            Response.Cookies.Append("Username", "xyz", obj);
+            Response.Cookies.Append("email", "xyz@yahoo.com", obj);
+
+            return View();
+        }
+
+        public IActionResult GetCookie() {
+            return View();
+        }
     }
 }

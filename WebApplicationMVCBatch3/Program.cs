@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationMVCBatch3.Repos;
 
@@ -30,6 +31,11 @@ namespace WebApplicationMVCBatch3
             });
             builder.Services.AddHttpContextAccessor();
 
+
+            // Authentic Config
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -46,8 +52,9 @@ namespace WebApplicationMVCBatch3
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+           
 
             app.MapControllerRoute(
                 name: "default",

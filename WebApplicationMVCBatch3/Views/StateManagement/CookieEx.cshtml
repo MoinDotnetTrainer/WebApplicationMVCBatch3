@@ -1,0 +1,16 @@
+﻿@inject IHttpContextAccessor IhttpcontextAccessor
+@{
+    ViewData["Title"] = "CookieEx";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>CookieEx</h1>
+
+
+<p>
+    UserName : @IhttpcontextAccessor.HttpContext.Request.Cookies["Username"]
+</p>
+
+<p>
+    Email: @IhttpcontextAccessor.HttpContext.Request.Cookies["email"]
+</p>
