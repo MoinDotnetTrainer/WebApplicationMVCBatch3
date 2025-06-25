@@ -14,7 +14,22 @@ namespace WebApplicationMVCBatch3.Controllers
         }
         public IActionResult Index()
         {
-            var res = _db.husbands.Include(p => p.wife).ToList();
+             var res = _db.husbands.Include(p => p.wife).ToList();
+
+          
+            return View(res);
+        }
+
+        public IActionResult PatientEx() {
+
+            var res = _db.patients.Include(p => p.PatientAddress).ToList();
+            return View(res);
+        }
+
+        public IActionResult PatientAddEx()
+        {
+
+            var res = _db.patientAddress.Include(p => p.Patient).ToList();
             return View(res);
         }
     }

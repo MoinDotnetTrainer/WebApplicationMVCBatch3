@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationMVCBatch3.Models;
 
@@ -10,9 +11,11 @@ using WebApplicationMVCBatch3.Models;
 namespace WebApplicationMVCBatch3.Migrations
 {
     [DbContext(typeof(AppDb))]
-    partial class AppDbModelSnapshot : ModelSnapshot
+    [Migration("20250625112955_Country 2")]
+    partial class Country2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,28 +23,6 @@ namespace WebApplicationMVCBatch3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Books", b =>
-                {
-                    b.Property<int>("BID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BID"));
-
-                    b.Property<string>("SName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentsSID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BID");
-
-                    b.HasIndex("StudentsSID");
-
-                    b.ToTable("books");
-                });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Country", b =>
                 {
@@ -217,23 +198,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.ToTable("States");
                 });
 
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Students", b =>
-                {
-                    b.Property<int>("SID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SID"));
-
-                    b.Property<string>("SName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SID");
-
-                    b.ToTable("students");
-                });
-
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Two", b =>
                 {
                     b.Property<int>("Id")
@@ -332,17 +296,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.ToTable("wives");
                 });
 
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Books", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.Students", "Students")
-                        .WithMany("Books")
-                        .HasForeignKey("StudentsSID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Students");
-                });
-
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Husband", b =>
                 {
                     b.HasOne("WebApplicationMVCBatch3.Models.Wife", "wife")
@@ -420,11 +373,6 @@ namespace WebApplicationMVCBatch3.Migrations
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Patient", b =>
                 {
                     b.Navigation("PatientAddress");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Students", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.User", b =>

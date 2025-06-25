@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationMVCBatch3.Models;
 
@@ -10,9 +11,11 @@ using WebApplicationMVCBatch3.Models;
 namespace WebApplicationMVCBatch3.Migrations
 {
     [DbContext(typeof(AppDb))]
-    partial class AppDbModelSnapshot : ModelSnapshot
+    [Migration("20250625104155_User Ex")]
+    partial class UserEx
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,61 +23,6 @@ namespace WebApplicationMVCBatch3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Books", b =>
-                {
-                    b.Property<int>("BID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BID"));
-
-                    b.Property<string>("SName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentsSID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BID");
-
-                    b.HasIndex("StudentsSID");
-
-                    b.ToTable("books");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Country", b =>
-                {
-                    b.Property<int>("Cid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Cid"));
-
-                    b.Property<string>("Cname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Cid");
-
-                    b.ToTable("countries");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Emp", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("EName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("emps");
-                });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Husband", b =>
                 {
@@ -96,19 +44,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.HasIndex("wifeRefID");
 
                     b.ToTable("husbands");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Location", b =>
-                {
-                    b.Property<int>("EmpID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LocAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmpID");
-
-                    b.ToTable("locations");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.One", b =>
@@ -190,48 +125,6 @@ namespace WebApplicationMVCBatch3.Migrations
                         .IsUnique();
 
                     b.ToTable("patientAddress");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.States", b =>
-                {
-                    b.Property<int>("Sid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Sid"));
-
-                    b.Property<int>("CountryCid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("refid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("sname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Sid");
-
-                    b.HasIndex("CountryCid");
-
-                    b.ToTable("States");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Students", b =>
-                {
-                    b.Property<int>("SID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SID"));
-
-                    b.Property<string>("SName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SID");
-
-                    b.ToTable("students");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Two", b =>
@@ -332,17 +225,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.ToTable("wives");
                 });
 
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Books", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.Students", "Students")
-                        .WithMany("Books")
-                        .HasForeignKey("StudentsSID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Students");
-                });
-
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Husband", b =>
                 {
                     b.HasOne("WebApplicationMVCBatch3.Models.Wife", "wife")
@@ -352,17 +234,6 @@ namespace WebApplicationMVCBatch3.Migrations
                         .IsRequired();
 
                     b.Navigation("wife");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Location", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.Emp", "Emp")
-                        .WithOne("Location")
-                        .HasForeignKey("WebApplicationMVCBatch3.Models.Location", "EmpID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Emp");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.One", b =>
@@ -385,17 +256,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.States", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.Country", "Country")
-                        .WithMany("States")
-                        .HasForeignKey("CountryCid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.UserProfile", b =>
                 {
                     b.HasOne("WebApplicationMVCBatch3.Models.User", "User")
@@ -407,24 +267,9 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Country", b =>
-                {
-                    b.Navigation("States");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Emp", b =>
-                {
-                    b.Navigation("Location");
-                });
-
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Patient", b =>
                 {
                     b.Navigation("PatientAddress");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.Students", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.User", b =>
