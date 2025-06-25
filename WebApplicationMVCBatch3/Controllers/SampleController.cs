@@ -8,5 +8,10 @@ namespace WebApplicationMVCBatch3.Controllers
         {
             return View();
         }
+        public IActionResult GettingData()
+        {
+            return View();
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using WebApplicationMVCBatch3.Repos;
 
 namespace WebApplicationMVCBatch3.Controllers
 {
+    [SetSessionGlobally]
     public class OrdersController : Controller
     {
 

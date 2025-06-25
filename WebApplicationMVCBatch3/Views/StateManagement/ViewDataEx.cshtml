@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "ViewDataEx";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>ViewDataEx</h1>
+
+<ol>
+    @foreach (var item in ViewData["vd"] as List<string>)
+    {
+        <li>
+            @item
+        </li>
+    }
+</ol>
+

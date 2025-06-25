@@ -4,6 +4,8 @@ using WebApplicationMVCBatch3.Repos;
 
 namespace WebApplicationMVCBatch3.Controllers
 {
+
+   
     public class AccountsController : Controller
     {
 
@@ -13,6 +15,7 @@ namespace WebApplicationMVCBatch3.Controllers
             _db = db;
         }
 
+        [SetSessionGlobally]
         [HttpGet]
         public IActionResult Insert()
         {
@@ -38,15 +41,25 @@ namespace WebApplicationMVCBatch3.Controllers
 
         public async Task<IActionResult> GetUsersData()
         {
-            var res =await _db.GetAllUsers();
-            return View(res);
+            var user = HttpContext.Session.GetString("LoginName");
+
+            if (string.IsNullOrEmpty(user))
+            {
+                // Session is null or empty → redirect to login
+                return RedirectToAction("LoginUser", "Logins");
+            }
+            else
+            {
+                var res = await _db.GetAllUsers();
+                return View(res);
+            }
         }
 
-
+        [SetSessionGlobally]
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
-            var res =await _db.GetUserByID(Id);
+            var res = await _db.GetUserByID(Id);
             return View(res);
         }
 
@@ -57,11 +70,11 @@ namespace WebApplicationMVCBatch3.Controllers
             return RedirectToAction("GetUsersData");
         }
 
-
+        [SetSessionGlobally]
         [HttpGet]
         public async Task<IActionResult> Delete(int Id)
         {
-            var res =await _db.GetUserByID(Id);
+            var res = await _db.GetUserByID(Id);
             return View(res);
         }
 

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <table style="width:100%;background-color:aquamarine;border-style:solid;border-radius:20px;text-align:center">
+        <tr>
+            <td>Welcome to Web App Development</td>
+        </tr>
+    </table>
+    <table style="width:100%;background-color:antiquewhite;border-style:solid;border-radius:20px;text-align:center">
+        <tr>
+            <td>
+                <a asp-page="/Userlist">User List</a> |
+            </td>
+            <td>
+                <a asp-page="/CreateUser">Create User</a> |
+            </td>
+            <td>
+                <a asp-controller="StateManagement" asp-action="StoreData">State Management ex</a>
+            </td>
+            <td>
+                <a asp-page="/Logout">Logout</a> |
+            </td>
+        </tr>
+    </table>
+
+    <div style="margin:20px;padding:20px;border-style:solid">
+        @RenderBody()
+    </div>
+
+    <table style="width:100%;background-color:gray;border-style:solid;border-radius:20px;text-align:center">
+        <tr>
+            <td>Copy rights</td>
+        </tr>
+    </table>
+</body>
+</html>

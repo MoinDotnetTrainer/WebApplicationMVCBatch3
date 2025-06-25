@@ -21,6 +21,14 @@ namespace WebApplicationMVCBatch3
             builder.Services.AddScoped<IUserRespo, UserRepo>();  // inject 
             builder.Services.AddScoped<IOrderRepo, Ordersrepo>();  // inject 
 
+            // use session midel ware has to configure
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(40);
+                options.Cookie.IsEssential = true;  // every login will create a key 
+            });
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 
@@ -31,6 +39,8 @@ namespace WebApplicationMVCBatch3
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

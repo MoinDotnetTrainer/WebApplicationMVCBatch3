@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor IhttptpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,6 +26,17 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Logins" asp-action="Logout">Logout</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Welcome Back : @IhttptpContextAccessor.HttpContext.Session.GetString("LoginName")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Login Time : @IhttptpContextAccessor.HttpContext.Session.GetString("Logintime")</a>
                         </li>
                     </ul>
                 </div>
