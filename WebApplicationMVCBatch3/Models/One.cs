@@ -30,17 +30,17 @@ namespace WebApplicationMVCBatch3.Models
         public string Username { get; set; }
 
         // Navigation to profile (1-to-1)
-        public UserProfile Profile { get; set; }
+        public UserProfile? Profile { get; set; }
     }
 
     public class UserProfile
     {
         [Key]
         public int UserId { get; set; }  // Acts as both PK and FK
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         // Navigation to user
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 
 }

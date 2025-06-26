@@ -10,11 +10,11 @@ namespace WebApplicationMVCBatch3.Controllers
             ViewBag.res = "Some Data from ViewBag";  // its scope 
             ViewData["res1"] = "Some Data from ViewData";  // its view
             TempData["res2"] = "Some Data from temp Data";  // scope 
-                                                            //  return RedirectToAction("GetData", "StateManagement");
-            return RedirectToAction("GettingData", "Sample");
+            return RedirectToAction("GetData", "StateManagement");
+            // return RedirectToAction("GettingData", "Sample");
 
 
-            //return View();
+            // return View();
         }
         public IActionResult GetData()
         {
@@ -22,7 +22,7 @@ namespace WebApplicationMVCBatch3.Controllers
             //store
             return RedirectToAction("NeedData", "StateManagement");
 
-            //   return View();
+            //return View();
         }
 
         public IActionResult NeedData()
@@ -58,13 +58,14 @@ namespace WebApplicationMVCBatch3.Controllers
 
             CookieOptions obj = new CookieOptions();
             obj.Expires = DateTime.Now.AddDays(7); // 1 day
-            Response.Cookies.Append("Username", "xyz", obj);
+            Response.Cookies.Append("Username", "xyz", obj);// adding data to cookies
             Response.Cookies.Append("email", "xyz@yahoo.com", obj);
 
             return View();
         }
 
-        public IActionResult GetCookie() {
+        public IActionResult GetCookie()
+        {
             return View();
         }
     }

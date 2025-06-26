@@ -56,6 +56,8 @@ namespace WebApplicationMVCBatch3.Controllers
         }
 
         [SetSessionGlobally]
+
+       // [Route("Edit/{id}")]
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
@@ -91,6 +93,11 @@ namespace WebApplicationMVCBatch3.Controllers
         {
             var res = await _db.GetUserByID(Id);
             return View(res);
+        }
+
+        public IActionResult Testing()
+        {
+            return View();
         }
 
     }

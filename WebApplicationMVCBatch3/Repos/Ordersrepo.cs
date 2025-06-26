@@ -26,6 +26,8 @@ namespace WebApplicationMVCBatch3.Repos
 
         public async Task<List<Orders>> GetAllOrders()
         {
+
+            //complex Queries with LINQ
             return await _db.Orders.ToListAsync();
         }
 

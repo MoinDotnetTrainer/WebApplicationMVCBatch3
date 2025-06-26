@@ -54,11 +54,15 @@ namespace WebApplicationMVCBatch3
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-           
+
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Logins}/{action=LoginUser}/{id?}");
+
+            //app.MapControllerRoute(
+            //   name: "myrouting",
+            //   pattern: "{action}/{controller}/{id?}");
 
             app.Run();
         }

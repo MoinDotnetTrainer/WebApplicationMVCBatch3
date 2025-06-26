@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationMVCBatch3.Models;
 
@@ -10,9 +11,11 @@ using WebApplicationMVCBatch3.Models;
 namespace WebApplicationMVCBatch3.Migrations
 {
     [DbContext(typeof(AppDb))]
-    partial class AppDbModelSnapshot : ModelSnapshot
+    [Migration("20250625120812_UserAccounts")]
+    partial class UserAccounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,38 +63,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.HasIndex("StudentsSID");
 
                     b.ToTable("books");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.C1", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("c1");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.C12", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("c12");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Country", b =>
@@ -203,48 +174,6 @@ namespace WebApplicationMVCBatch3.Migrations
                     b.HasKey("OrderID");
 
                     b.ToTable("tbl_NewOrders");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.P1", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("C1Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("C1Id");
-
-                    b.ToTable("p1");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.P12", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("C12Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("C12Id");
-
-                    b.ToTable("p12");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.Patient", b =>
@@ -486,24 +415,6 @@ namespace WebApplicationMVCBatch3.Migrations
                         .HasForeignKey("twoId");
 
                     b.Navigation("two");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.P1", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.AccountName", "C1")
-                        .WithMany()
-                        .HasForeignKey("C1Id");
-
-                    b.Navigation("C1");
-                });
-
-            modelBuilder.Entity("WebApplicationMVCBatch3.Models.P12", b =>
-                {
-                    b.HasOne("WebApplicationMVCBatch3.Models.C12", "C12")
-                        .WithMany()
-                        .HasForeignKey("C12Id");
-
-                    b.Navigation("C12");
                 });
 
             modelBuilder.Entity("WebApplicationMVCBatch3.Models.PatientAddress", b =>

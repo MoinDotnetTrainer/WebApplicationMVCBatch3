@@ -48,7 +48,7 @@ namespace WebApplicationMVCBatch3.Controllers
 
                 if (IsAuth == true)
                 {
-                  
+
                     var prin = new ClaimsPrincipal(Identity);
                     var redirect = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, prin);
                     return RedirectToAction("GetUsersData", "Accounts", redirect);

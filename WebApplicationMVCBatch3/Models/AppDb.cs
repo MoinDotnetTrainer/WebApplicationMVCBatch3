@@ -38,6 +38,18 @@ namespace WebApplicationMVCBatch3.Models
         public DbSet<Students> students { get; set; }  // table 
 
         public DbSet<Books> books { get; set; }  // table 
+        public DbSet<UserAccount> UserAccount { get; set; }  // table 
+
+        public DbSet<AccountName> AccountName { get; set; }  // table 
+
+        public DbSet<P1> p1 { get; set; }  // table 
+
+        public DbSet<C1> c1 { get; set; }  // table 
+
+        public DbSet<P12> p12 { get; set; }  // table 
+
+        public DbSet<C12> c12 { get; set; }  // table 
+
 
     }
 }

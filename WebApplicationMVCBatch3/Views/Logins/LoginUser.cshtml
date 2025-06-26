@@ -17,7 +17,8 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
-            <h3 class="text-center mb-4">Login</h3>
+            @*   <h3 class="text-center mb-4">Login</h3> *@
+            <CustomeHeading></CustomeHeading>
             <form asp-action="LoginUser">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
@@ -37,6 +38,11 @@
                 </div>
 
                 <input type="submit" class="btn btn-primary w-100" value="submit" name="submit">
+
+                <br />
+                <CustomeBtn button-text="Login !!" button-class="btn btn-danger" >
+
+                </CustomeBtn>
 
                 @TempData["res"]
             </form>
